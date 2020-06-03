@@ -1,17 +1,12 @@
 import React from 'react';
 import './App.css';
 import { useState } from 'react';
+import ValidationComponent from './Components/ValidationComponent';
 
 function App() {
   const [inputState, setInputState ] = useState({
     count: 0
   });
-
-  // const setCount = (event) => {
-  //   setInputState({
-  //     count: event.target.value.length  
-  //   });
-  // };
 
   return (
     <div className="App">
@@ -22,6 +17,7 @@ function App() {
           }}
         />
         <p>Count: {inputState.count}</p>
+        <ValidationComponent textLength={inputState.count} />
     </div>
   );
 }
