@@ -9,12 +9,23 @@ function App() {
     text: ""
   });
 
-  let chars = (
+  const deleteChar = index => {
+    let r = inputState.text.slice(0, index);
+    r = r + inputState.text.slice(index+1);
+    setInputState({
+      text: r
+    });
+  };
+
+  const chars = (
     <div>
       {inputState.text.split('').map( (c, index) =>{
-        return <CharComponent char={c} key={index}/>;
+        return <CharComponent 
+          char={c} 
+          key={index} 
+          click={() => deleteChar(index)}
+          />;
       })}
-      
     </div>
   );
 
@@ -25,6 +36,7 @@ function App() {
               text: event.target.value
             });
           }}
+          value={inputState.text}
         />
         <p>Count: {inputState.text.length}</p>
         <ValidationComponent textLength={inputState.text.length} />
